@@ -6,6 +6,13 @@ const cookieParser=require('cookie-parser');
 const userRouter=require('./routes/user');
 const adminRouter=require('./routes/admin');
 const venderRouter=require('./routes/vender');
+const db=require('./database/connection')
+const path =require('path')
+db();
+
+//view engine
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine','ejs')
 //middleware
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
@@ -19,6 +26,7 @@ app.use((error,req,res)=>{
     res.send(error);
 })
 
+
 app.listen(port,()=>{
-    console.log('server running in portnumber 3000;');
+    console.log('server running.....');
 })
