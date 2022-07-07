@@ -15,8 +15,8 @@ db();
 //view engine
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine','ejs')
-// app.engine('ejs',ejs({extname:'ejs',defaultLayout:'layout',layoutDir:__dirname+'/views/layout/partials',partialsDir:__dirname+'/views/layout/'}))
 //middleware
+app.use(express.static(__dirname + '/public'));
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(cookieParser());
