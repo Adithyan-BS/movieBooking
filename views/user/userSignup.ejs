@@ -30,10 +30,10 @@
                     <input type="password" class="form-control" id="password" name="password" placeholder="*******">
 
                     <label for="password" class="form-label" >Confirm Password</label>
-                    <input type="password" class="form-control" id="password" name="confirmPassword" placeholder="*******">
+                    <input type="password" class="form-control" id="confirmpassword" name="confirmPassword" placeholder="*******">
                   </div>
                   <div class="d-grid">
-                    <button class="btn btn-outline-dark" type="submit">Signup</button>
+                    <button class="btn btn-outline-dark" type="submit" onclick="return submitData()">Signup</button>
                   </div>
                 </form>
                 <div>
@@ -51,3 +51,18 @@
   </body>
 
 </html>
+<script>  
+  function submitData(){
+    let firstPassword = document.getElementById('password').value; 
+    let secondPassword=document.getElementById("confirmpassword").value
+    let password=firstPassword.toString();
+    let conformPassword=secondPassword.toString();
+    if(password === secondPassword){
+      return true
+    }else{
+      alert('Password doesnot match')
+      return false
+    }
+  }
+  
+</script>
