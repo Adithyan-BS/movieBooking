@@ -24,3 +24,7 @@ exports.signup=(req,res)=>{
 exports.SignupData=(req,res)=>{
   console.log(req.body);
 }
+exports.loginSend=(req,res)=>{
+  res.render('user/userSignup')
+}
+
