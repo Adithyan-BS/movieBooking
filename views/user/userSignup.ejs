@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <form action="/SignupData" method="post">
+    <form id="formData" action="/SignupData" method="post">
     <div class="vh-100 d-flex justify-content-center align-items-center">
       <div class="container">
         <div class="row d-flex justify-content-center">
@@ -61,8 +61,15 @@
       return true
     }else{
       alert('Password doesnot match')
+      clearInput()
       return false
     }
   }
+
+  function clearInput(){
+    let form=document.getElementById('formData')
+    form.reset()
+  }
+  
   
 </script>
