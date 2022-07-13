@@ -31,6 +31,16 @@ userSchema.pre('save',async function(next){
   next()
 })
 
+userSchema.methods.compaire=function(enterdPassword,dbPassword){
+  bcrypt.compare(enterdPassword,dbPassword,(error,res)=>{
+    if(res){
+      console.log('Password matches');
+    }else{
+      console.log('your password doesnot match.');
+    }
+  })
+}
+
 const userModel = mongoose.model("users", userSchema);
 
 module.exports = userModel;

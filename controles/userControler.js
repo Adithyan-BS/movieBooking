@@ -1,5 +1,6 @@
 const userModel = require("../models/userModel");
 
+
 exports.hello = (req, res, next) => {
   try {
     res.render("layout/layout",{admin:false,user:true});
@@ -17,6 +18,7 @@ exports.login=(req,res,next)=>{
 
 exports.LoginData=(req,res)=>{
   console.log(req.body);
+
 }
 
 exports.signup=(req,res)=>{
@@ -24,7 +26,7 @@ exports.signup=(req,res)=>{
 }
 exports.SignupData=(req,res)=>{
   // console.log(req.body);
-  let user= new userModel({
+  let signupUser= new userModel({
     email:req.body.email,
     password:req.body.password
   })
