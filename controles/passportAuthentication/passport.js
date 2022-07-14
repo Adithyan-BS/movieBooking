@@ -1,9 +1,9 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
-const userModel = require("../models/userModel");
+const userModel = require("../../models/userModel");
 
 
-function authentication(){
+function myAuthentication(){
     passport.use(new LocalStrategy(function verify(userName){
         userModel.findOne({email:userName},(err,userDetils)=>{
             if(userDetils){
@@ -19,4 +19,4 @@ function authentication(){
     
 }
 
-module.exports=authentication
+module.exports=myAuthentication

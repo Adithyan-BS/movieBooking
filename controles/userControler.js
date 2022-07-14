@@ -1,4 +1,5 @@
 const userModel = require("../models/userModel");
+const myAuthentication=require('./passportAuthentication/passport')
 
 
 exports.hello = (req, res, next) => {
@@ -17,6 +18,7 @@ exports.login=(req,res,next)=>{
 }
 
 exports.LoginData=(req,res)=>{
+  myAuthentication()
   console.log(req.body);
 
 }
