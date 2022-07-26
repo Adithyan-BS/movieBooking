@@ -1,5 +1,7 @@
 const userModel = require("../models/userModel");
 const myAuthentication=require('./passportAuthentication/passport')
+var passport = require('passport');
+var LocalStrategy = require('passport-local');
 
 
 exports.hello = (req, res, next) => {
@@ -17,10 +19,19 @@ exports.login=(req,res,next)=>{
   }
 }
 
-exports.LoginData=(req,res)=>{
-  myAuthentication()
-  console.log(req.body);
-
+exports.LoginData=(req,res,next)=>{
+  passport.authenticate('local',(e,data)=>{
+    try {
+      if(data){
+        console.log('data reached');
+        console.log(data);
+        res.redirect('/')
+      }
+    } catch (e) {
+      res.redirect('user/login')
+    }
+  })(req,res,next)
+  
 }
 
 exports.signup=(req,res)=>{
@@ -32,8 +43,8 @@ exports.SignupData=(req,res)=>{
     email:req.body.email,
     password:req.body.password
   })
-  user.save().then((data)=>{
-    console.log(data);
+  signupUser.save().then((data)=>{
+    // console.log(data);
   }).catch((error)=>{
     console.log(error);
   })

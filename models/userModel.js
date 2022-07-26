@@ -31,14 +31,19 @@ userSchema.pre('save',async function(next){
   next()
 })
 
-userSchema.methods.compaire=function(enterdPassword,dbPassword){
-  bcrypt.compare(enterdPassword,dbPassword,(error,res)=>{
-    if(res){
+userSchema.methods.compaire= async function(enterdPassword,dbPassword){
+  let passwordCheck=await bcrypt.compare(enterdPassword,dbPassword)
+    if(passwordCheck){
       console.log('Password matches');
+      console.log(passwordCheck);
+      return passwordCheck
+      
+      
     }else{
       console.log('your password doesnot match.');
+      return false
     }
-  })
+  
 }
 
 const userModel = mongoose.model("users", userSchema);
