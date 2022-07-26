@@ -29,9 +29,19 @@ app.use(passport.initialize())
 app.use(session({
     secret: 'sessionStore',
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     // cookie: { secure: true }
   }))
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use((req,res,next)=>{
+    // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+    console.log(req.session);
+    // console.log("+++++++++++++=================");
+    console.log(req.user);
+    next()
+})
 //Routes
 app.use('/',userRouter);
 app.use('/admin',adminRouter);

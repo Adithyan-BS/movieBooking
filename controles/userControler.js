@@ -21,15 +21,16 @@ exports.login=(req,res,next)=>{
 
 exports.LoginData=(req,res,next)=>{
   passport.authenticate('local',(e,data)=>{
-    try {
+    console.log(data);
+   
       if(data){
         console.log('data reached');
         console.log(data);
         res.redirect('/')
+      }else{
+        res.redirect('/login')
       }
-    } catch (e) {
-      res.redirect('user/login')
-    }
+    
   })(req,res,next)
   
 }
