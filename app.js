@@ -11,10 +11,12 @@ const path =require('path');
 const passport = require('passport');
 require('./controles/passportAuthentication/passport')
 const session=require('express-session')
+const flash=require('express-flash')
 
 db();
 
-
+//flash setup
+app.use(flash())
 
 //view engine
 app.set('views', path.join(__dirname, 'views'))
@@ -37,10 +39,9 @@ app.use(passport.authenticate('session'));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use((req,res,next)=>{
-    // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     console.log(req.session);
-    // console.log("+++++++++++++=================");
     console.log(req.user);
+    
     next()
 })
 //Routes

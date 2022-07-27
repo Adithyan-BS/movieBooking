@@ -20,6 +20,11 @@
                 <form class="mb-3 mt-md-4">
                   <h2 class="fw-bold mb-2 text-uppercase ">Login</h2>
                   <p class=" mb-5">Please enter your login and password!</p>
+
+                  <% if (messages.error) { %>
+                    <p><%= messages.error %></p>
+                  <% } %>
+
                   <div class="mb-3">
                     <label for="email" class="form-label ">Email address</label>
                     <input type="email" class="form-control" id="email"name="email" placeholder="name@example.com">

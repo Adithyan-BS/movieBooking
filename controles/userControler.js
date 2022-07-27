@@ -19,23 +19,9 @@ exports.login=(req,res,next)=>{
   }
 }
 
-// exports.LoginData=(req,res,next)=>{
-//   passport.authenticate('local',(e,data)=>{
-//     console.log(data);
-   
-//       if(data){
-//         console.log('data reached');
-//         console.log(data);
-//         res.redirect('/')
-//       }else{
-//         res.redirect('/login')
-//       }
-    
-//   })(req,res,next)
-  
-// }
 
 exports.LoginData=passport.authenticate('local',{
+  failureFlash:true, // if data is null and false then if failureFlash is set true then the message set will be set to session as a session varilable and then the message can be send to view engine and if failureFlash is set true then the it will get in message.error and it can be displayed in message.error    .
   successRedirect:'/',
   failureRedirect:'/login'
 })
