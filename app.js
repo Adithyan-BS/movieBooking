@@ -12,6 +12,7 @@ const passport = require('passport');
 require('./controles/passportAuthentication/passport')
 const session=require('express-session')
 const flash=require('express-flash')
+const MongoStore=require('connect-mongo')
 
 db();
 
@@ -32,7 +33,10 @@ app.use(session({
     secret: 'sessionStore',
     resave: false,
     saveUninitialized: true,
-    // cookie: { secure: true }
+    store:MongoStore.create({mongoUrl:'mongodb://localhost:27017/movieDataBase',
+    ttl: 14 * 24 * 60 * 60}
+    )
+    
 }))
 app.use(passport.authenticate('session'));
 
