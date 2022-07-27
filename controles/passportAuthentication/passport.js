@@ -24,11 +24,18 @@ passport.use(
     }
   )
 );
-passport.serializeUser((user, done) => {
-  //this will get data when passport.authenticate is called
-  done(null, user.id); //setting data to session middleware in req.session.passport.user
+// passport.serializeUser((user, done) => {
+//   //this will get data when passport.authenticate is called
+//   done(null, user.id); //setting data to session middleware in req.session.passport.user
+// });
+
+passport.serializeUser(function(user, cb) {
+  process.nextTick(function() {
+    cb(null, { id: user.id, username: user.username });
+  });
 });
-
-// passport.deserializeUser((userId,done)=>{
-
-// })
+passport.deserializeUser(function(user, cb) {
+  process.nextTick(function() {
+    return cb(null, user);
+  });
+});

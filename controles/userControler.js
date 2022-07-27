@@ -19,21 +19,26 @@ exports.login=(req,res,next)=>{
   }
 }
 
-exports.LoginData=(req,res,next)=>{
-  passport.authenticate('local',(e,data)=>{
-    console.log(data);
+// exports.LoginData=(req,res,next)=>{
+//   passport.authenticate('local',(e,data)=>{
+//     console.log(data);
    
-      if(data){
-        console.log('data reached');
-        console.log(data);
-        res.redirect('/')
-      }else{
-        res.redirect('/login')
-      }
+//       if(data){
+//         console.log('data reached');
+//         console.log(data);
+//         res.redirect('/')
+//       }else{
+//         res.redirect('/login')
+//       }
     
-  })(req,res,next)
+//   })(req,res,next)
   
-}
+// }
+
+exports.LoginData=passport.authenticate('local',{
+  successRedirect:'/',
+  failureRedirect:'/login'
+})
 
 exports.signup=(req,res)=>{
   res.render('user/userSignup')
