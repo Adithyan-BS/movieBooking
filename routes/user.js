@@ -11,5 +11,6 @@ router.post('/loginData',userControlers.LoginData);
 router.get('/signup',userControlers.signup);
 router.post('/SignupData',userControlers.SignupData);
 router.get('/createAccount',userControlers.loginSend);
+router.get('/logout',userControlers.logout)
 
 module.exports = router;

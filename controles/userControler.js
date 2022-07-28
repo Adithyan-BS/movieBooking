@@ -48,4 +48,12 @@ exports.SignupData=(req,res)=>{
 exports.loginSend=(req,res)=>{
   res.render('user/userSignup')
 }
+exports.logout=(req,res)=>{
+  req.logout(function(err){
+    if(err){
+      return next(err);
+    }
+    res.redirect('/login')
+  })
+}
 
