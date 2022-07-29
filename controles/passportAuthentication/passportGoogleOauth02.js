@@ -1,4 +1,5 @@
 const passport = require("passport");
+const userModel = require("../../models/userModel");
 var GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 passport.serializeUser(function (user, done) {
@@ -21,9 +22,16 @@ passport.use(
       callbackURL: "//localhost:3000/googleLogin/callback",
     },
     function (accessToken, refreshToken, profile, done) {
-      console.log("this is profile >>>>>>>>>>>>>>>>>");
       console.log(profile);
-      return done(null,profile)
+
+      userModel.findOne({ googleId: profile.id }, function (err, user) {
+        if (err) {
+          console.log(err);
+          // return err, null;
+        } else {
+          return done(err, user);
+        }
+      });
     }
   )
 );

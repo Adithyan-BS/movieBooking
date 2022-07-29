@@ -14,6 +14,6 @@ router.get('/createAccount',userControlers.loginSend);
 router.get('/logout',userControlers.logout)
 //google Oauth02
 router.get('/googleLogin',userControlers.googleOauth)
-router.get('/googleLogin/callback',userControlers.googleOauth02)
+router.get('/googleLogin/callback',passport.authenticate('google', { failureRedirect: '/login' }),userControlers.googleOauth02)
 
 module.exports = router;

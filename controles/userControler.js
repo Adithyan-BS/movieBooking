@@ -61,9 +61,8 @@ exports.logout=(req,res)=>{
 
 exports.googleOauth=passport.authenticate('google', { scope: ['profile'] });
 
-exports.googleOauth02=passport.authenticate('google',{
-  failureRedirect:'/login'
-}),function(req,res){
-  res.redirect('/')
-}
 
+exports.googleOauth02= (req, res)=>{
+  // Successful authentication, redirect home.
+  res.redirect('/');
+};
