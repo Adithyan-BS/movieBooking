@@ -4,6 +4,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local');
 
 
+
 exports.hello = (req, res, next) => {
   try {
     res.render("layout/layout",{admin:false,user:true});
@@ -53,7 +54,16 @@ exports.logout=(req,res)=>{
     if(err){
       return next(err);
     }
+    req.user=null
     res.redirect('/login')
   })
+}
+
+exports.googleOauth=passport.authenticate('google', { scope: ['profile'] });
+
+exports.googleOauth02=passport.authenticate('google',{
+  failureRedirect:'/login'
+}),function(req,res){
+  res.redirect('/')
 }
 

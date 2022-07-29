@@ -13,6 +13,7 @@ require('./controles/passportAuthentication/passport')
 const session=require('express-session')
 const flash=require('express-flash')
 const MongoStore=require('connect-mongo')
+require('./controles/passportAuthentication/passportGoogleOauth02')
 
 db();
 

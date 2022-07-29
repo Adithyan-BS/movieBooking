@@ -2,7 +2,7 @@ var passport = require("passport");
 var LocalStrategy = require("passport-local");
 const userModel = require("../../models/userModel");
 
-console.log("Passport js is connected...");
+// console.log("Passport js is connected...");
 
 passport.use(
   new LocalStrategy(

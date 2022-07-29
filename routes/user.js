@@ -12,5 +12,8 @@ router.get('/signup',userControlers.signup);
 router.post('/SignupData',userControlers.SignupData);
 router.get('/createAccount',userControlers.loginSend);
 router.get('/logout',userControlers.logout)
+//google Oauth02
+router.get('/googleLogin',userControlers.googleOauth)
+router.get('/googleLogin/callback',userControlers.googleOauth02)
 
 module.exports = router;
