@@ -3,6 +3,10 @@ const bcrypt = require("bcrypt");
 
 const saltRounds=10
 const userSchema = new mongoose.Schema({
+  id:{
+    type:String,
+    unique:true
+  },
   
   email: {
     type: String,
@@ -20,14 +24,23 @@ const userSchema = new mongoose.Schema({
   }
 });
 
+
+
+
 userSchema.pre('save',async function(next){
+
   let user=this;
-  console.log(user);
-  // console.log(this);
-   const hash= await bcrypt.hash(user.password,saltRounds);
-   console.log(hash);
-   user.password=hash
-  next()
+  if(user.password){
+    console.log(user);
+    // console.log(this);
+     const hash= await bcrypt.hash(user.password,saltRounds);
+     console.log(hash);
+     user.password=hash
+    next()
+  }else{
+    next()
+  }
+ 
 })
 
 userSchema.methods.compaire= async function(enterdPassword,dbPassword){

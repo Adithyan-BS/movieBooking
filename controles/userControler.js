@@ -59,10 +59,10 @@ exports.logout=(req,res)=>{
   })
 }
 
-exports.googleOauth=passport.authenticate('google', { scope: ['profile'] });
+exports.googleOauth=passport.authenticate('google', { scope: ["https://www.googleapis.com/auth/userinfo.profile",
+"https://www.googleapis.com/auth/userinfo.email" ] });
 
-
-exports.googleOauth02= (req, res)=>{
-  // Successful authentication, redirect home.
-  res.redirect('/');
-};
+ exports.googleOauth02=(req, res)=>{
+   // Successful authentication, redirect home.
+   res.redirect('/');
+ }

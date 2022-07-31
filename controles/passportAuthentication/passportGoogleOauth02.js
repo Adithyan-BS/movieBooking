@@ -1,6 +1,6 @@
 const passport = require("passport");
 const userModel = require("../../models/userModel");
-var GoogleStrategy = require("passport-google-oauth20").Strategy;
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 passport.serializeUser(function (user, done) {
   done(null, user.id);
@@ -21,17 +21,21 @@ passport.use(
       clientSecret: "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",
       callbackURL: "//localhost:3000/googleLogin/callback",
     },
-    function (accessToken, refreshToken, profile, done) {
+    async function (accessToken, refreshToken, profile, done) {
       console.log(profile);
-
-      userModel.findOne({ googleId: profile.id }, function (err, user) {
-        if (err) {
-          console.log(err);
-          // return err, null;
-        } else {
-          return done(err, user);
+      try {
+        let user= await userModel.findOne({ googleId: profile.id })
+        if(!user){
+          user= await userModel.create({id:profile.id,email:profile.emails[0].value})
+          return done(null,user);
         }
-      });
+        return done(null,user)
+      } catch (error) {
+        return done(error)
+      }
+   
+
+      
     }
   )
 );
