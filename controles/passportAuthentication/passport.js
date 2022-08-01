@@ -1,5 +1,6 @@
 var passport = require("passport");
 var LocalStrategy = require("passport-local");
+const adminModel = require("../../models/adminModel");
 const userModel = require("../../models/userModel");
 
 // console.log("Passport js is connected...");
@@ -9,16 +10,32 @@ passport.use(
     { usernameField: "email", passwordField: "password" },
     function (userName, password, done) {
       console.log("localStrategy is working");
+
       let hashedResult;
       userModel.findOne({ email: userName }, async (err, userDetils) => {
         if (userDetils) {
           console.log("User found");
-          console.log(userDetils);
+          // console.log(userDetils);
           if (await userDetils.compaire(password, userDetils.password)) {
             return done(null, userDetils);
           } else {
             return done(null, false,{message:'password incorrect'}); // message is taken as failureFlash due to null and flash in return that means no data is found if no data is found and failureFlash is set as true.
           }
+        }else{
+          console.log('else working');
+          adminModel.findOne({email:userName},async (err,userDetils)=>{
+            if(userDetils){
+              if (await userDetils.compaire(password, userDetils.password)) {
+                console.log(userDetils);
+                return done(null, userDetils);
+              } else {
+                return done(null, false,{message:'password incorrect'}); // message is taken as failureFlash due to null and flash in return that means no data is found if no data is found and failureFlash is set as true.
+              }
+            }else{
+              console.log('admin not found');
+            }
+          })
+          
         }
       });
     }

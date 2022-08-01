@@ -40,6 +40,7 @@ const adminSchema= new mongoose.Schema({
 
 adminSchema.pre('save',async function(next){
   let admin=this;
+  console.log('preSave working');
   if(admin.password){
     console.log(admin.password)
     const hash= await bcrypt.hash(admin.password,saltRounds)
@@ -50,6 +51,10 @@ adminSchema.pre('save',async function(next){
     next()
   }
 })
+
+adminSchema.methods.compaire= async function(enterdPassword,dbPassword){
+  return await bcrypt.compare(enterdPassword,dbPassword)  
+}
 
 const adminModel=mongoose.model('admins',adminSchema) // "admins" this is the name of collection created in movieDataBase
 module.exports=adminModel

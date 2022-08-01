@@ -1,4 +1,5 @@
 const adminModel=require('../models/adminModel')
+const passport=require('passport')
 
 exports.adminLogin=(req,res)=>{
     res.render('admin/adminLogin')
@@ -17,4 +18,13 @@ exports.adminSignupData=(req,res)=>{
     }).catch((error)=>{
         console.log(error);
     })
+    res.redirect('adminLogin')
 }
+exports.adminHome=(req,res)=>{
+    res.render('admin/adminHome')
+}
+exports.adminLoginData=passport.authenticate('local',{
+    successRedirect:'adminHome',
+    failureRedirect:'adminLogin'
+})
+
