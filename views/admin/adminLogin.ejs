@@ -36,10 +36,14 @@
                     <button class="btn btn-outline-dark" type="submit">Login</button>
                   </div>
                 </form>
-                <div>
-                  <p class="mb-0  text-center">Create a new admin? <a href="/admin/AdminCreateAccount" class="text-primary fw-bold">Sign
-                      Up</a></p>
-                </div>
+                <% if(adminCount){ %>
+                  <div>
+                  
+                    <p class="mb-0  text-center">Create a new admin? <a href="/admin/AdminCreateAccount" class="text-primary fw-bold">Sign
+                        Up</a></p>
+                  </div>
+                  <%}%>
+               
 
               </div>
             </div>
@@ -52,3 +56,4 @@
   </body>
 
 </html>
+
