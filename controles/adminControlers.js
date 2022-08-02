@@ -40,7 +40,7 @@ exports.adminSignupData=async (req,res)=>{
         req.flash('info',"Admin allready found, cannot create a new admin... You will be redirect to login page.")
         setTimeout(() => {
             res.redirect('adminLogin')
-        }, 3000);
+        }, 1000);
 
     }
     

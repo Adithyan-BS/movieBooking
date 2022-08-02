@@ -1,0 +1,9 @@
+exports.venderSignup=(req,res)=>{
+    res.render('vender/venderSignup')
+}
+exports.venderLogin=(req,res)=>{
+    res.render('vender/venderLogin')
+}
+exports.VendercreateAccount=(req,res)=>{
+    res.redirect('venderSignup')
+}
