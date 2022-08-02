@@ -6,4 +6,7 @@ module.exports=router
 router.get('/venderSignup',venderControls.venderSignup)
 router.get('/venderLogin',venderControls.venderLogin)
 router.get('/VendercreateAccount',venderControls.VendercreateAccount)
+router.post('/venderSignupData',venderControls.venderSignupData)
+router.post('/venderLoginData',venderControls.venderLoginData)
+
 
