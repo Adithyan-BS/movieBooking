@@ -23,6 +23,11 @@
                     <p><%= messages.error %></p>
                   <% } %>
 
+                  <% if (messages.info) { %>
+                    <p><%= messages.info %></p>
+                  <% } %>
+
+
                   <div class="mb-3">
                     <label for="email" class="form-label ">Email address</label>
                     <input type="email" class="form-control" id="email"name="email" placeholder="name@example.com">
@@ -42,6 +47,10 @@
                     <p class="mb-0  text-center">Create a new admin? <a href="/admin/AdminCreateAccount" class="text-primary fw-bold">Sign
                         Up</a></p>
                   </div>
+                  <%}else{%>
+                    <div>
+                      <p>Admin allready exist</p>
+                    </div>
                   <%}%>
                
 
@@ -57,3 +66,6 @@
 
 </html>
 
+<script>
+  console.log(adminCount);
+</script>
