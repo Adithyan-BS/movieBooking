@@ -10,6 +10,7 @@ const db=require('./database/connection')
 const path =require('path');
 const passport = require('passport');
 require('./controles/passportAuthentication/passport')
+require('./controles/passportAuthentication/venderPassport')
 const session=require('express-session')
 const flash=require('express-flash')
 const MongoStore=require('connect-mongo')

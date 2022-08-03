@@ -1,7 +1,12 @@
 const venderModel=require('../models/venderModel')
+const passport=require('passport')
+
 
 exports.venderSignup=(req,res)=>{
     res.render('vender/venderSignup')
+}
+exports.venderHome=(req,res)=>{
+    res.render('vender/vender')
 }
 exports.venderLogin=(req,res)=>{
     res.render('vender/venderLogin')
@@ -23,6 +28,15 @@ exports.venderSignupData=(req,res)=>{
     res.redirect('venderLogin')
 
 }
-exports.venderLoginData=(req,res)=>{
-    console.log(req.body);
-}
+// exports.venderLoginData=(req,res)=>{
+//     console.log(req.body);
+
+// }
+
+exports.venderLoginData=passport.authenticate('venderStrategy',{
+    successRedirect:'vender',
+    failureRedirect:'/venderLogin'
+    
+})
+
+
